@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <script src="5.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    let mySlider = {
+        config : {
+            slider : '.slider-content',
+            activeSlide : '.slide.active',
+            button: '.next-button',
+            transition: 800,
+            delay: function() {return this.transition;},
+            navigation : '.control-nav'
+        },
+        init : function(config) {
+            this.createNav();
+            $(mySlider.config.button).click(function() {
+                mySlider.animateSlide($(this));
+            });
+        },
+        getActiveSlide : function() {
+            return $(mySlider.config.activeSlide);
+        },
+        getNextSlide : function() {
+            let nextSlide = mySlider.getActiveSlide().next();
+            if ( nextSlide.length === 0 ){
+                nextSlide = $(mySlider.config.slider).find('.slide').eq(0);
+            }
+            return nextSlide;
+        },
+        createNav : function() {
+            let totalSlides = $(mySlider.config.slider).find('.slide').length;
+            let controlNav = $(mySlider.config.navigation).find('ul');
+            let nav;
+            for( let i=0; i < totalSlides; i++ ){
+                let active = "";
+                if(i === 0){
+                    active = 'active';
+                }
+                controlNav.append('<li class="slider-nav nav-'+i+' '+active+' ">'+ (i+1) +'</li>')
+            }
+        },
+        animateNav : function() {
+            let activeNav  = $('li.active');
+            let nextNav = activeNav.next();
+            if(nextNav.length === 0){
+                nextNav = $('.control-nav li').eq(0);
+            }
+            activeNav.removeClass('active');
+            nextNav.addClass('active');
+        },
+        animateSlide : function(button) {
+            let activeSlide  = mySlider.getActiveSlide();
+            let nextSlide = mySlider.getNextSlide();
+            let delay = mySlider.config.delay();
+            let clipPath = $('.clip-svg');
+            clipPath.css('transition-duration', mySlider.config.transition+'ms');
+            button.css('pointer-events', 'none');
+            nextSlide.css('z-index',10);
+            nextSlide.addClass('active').css('opacity', 1);
+            setTimeout(function() {
+                activeSlide.removeClass('active').css('opacity', 0);
+            }, delay);
+            setTimeout(function() {
+                nextSlide.css('z-index','');
+                button.css('pointer-events', 'auto');
+            }, delay + 300);
+            mySlider.animateNav();
+        }
+    }
+    $(document).ready(function() { mySlider.init();
+    });
+    </script>
+
+    <meta charset="utf-8">
+    <title></title>
+   <style>
+
+   html
+   {
+     scroll-behavior: smooth;
+   }
+
+
+
+.map iframe
+{
+  height:
+    width: 100%;
+    padding-top: 7%;
+    margin-bottom: 0;
+}
+
+
+.map
+{
+  margin:0;
+  padding:0;
+}
+
+body
+{
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+.rectangle
+  {
+  width: 100%;
+  height: 30%;
+  background: #ffa8d1;
+}
+
+  .logo
+  {
+    width: 10%;
+    height: 60%;
+    padding-left: 15%;
+    padding-top: 1%;
+    padding-bottom: 0.9%;
+
+  }
+
+  .phone
+  {
+    width: 2%;
+    height: 50%;
+    padding-left: 35%;
+    padding-bottom: 1%;
+  }
+
+  .text
+  {
+    position: absolute;
+    top:9px;
+    margin-left: 63%;
+    padding-bottom: 15px;
+    font-size: 20px;
+    font-family:Alegreya Sans;
+
+  }
+
+  .cilk
+  {
+    position: absolute;
+    top:27px;
+    margin-left: 66.3%;
+    padding-bottom: 15px;
+    font-size: 20px;
+    color: black;
+    font-family:Alegreya Sans;
+  }
+
+.geo
+{
+  position: absolute;
+  top:11px;
+  width: 2%;
+  height: 4.5%;
+  padding-left: 74.5%;
+}
+
+.text2
+{
+  position: absolute;
+  top:2.5%;
+  margin-left: 77%;
+  padding-bottom: 15px;
+  font-size: 19px;
+  line-height: 1px;
+  font-family:Alegreya Sans;
+
+}
+
+.main
+{
+width: 100%;
+height: 100%;
+}
+
+.zad1 {
+      font-size: 30px; /* Размер текста */
+      padding: 5px 20px; /* Поля вокруг текста */
+      background: #ffa8d1;
+      border-radius: 10px; /* Уголки */
+      width: 320px;
+      height: 60px;
+      border: 0; /* Параметры рамки */
+
+      left:23%;
+      top:70%;
+      position:absolute;
+      font-family:Alegreya Sans;
+}
+
+.zad1:hover
+{
+    background: #ff8dc3;
+}
+
+.textm
+{
+  position: absolute;
+  top:35%;
+  margin-left: 20%;
+  padding-bottom: 15px;
+  font-size: 33px;
+  line-height: 3px;
+  font-family:Alegreya Sans;
+}
+
+.why
+{
+  font-size: 48px; /* Размер текста */
+  font-family:Alegreya Sans;
+}
+
+
+.head
+{
+  font-family:Alegreya Sans;
+
+   margin-top: 7%;
+   margin-left: 43%;
+
+       font-size: 46px;
+}
+
+
+
+.img1
+{
+  padding-top:5%;
+  padding-left:15%;
+}
+
+.imgg1
+{
+  font-family:Alegreya Sans;
+  font-size: 29px;
+  position: absolute;
+  left: 24%;
+  padding-top: 1%;
+}
+
+
+
+.img2
+{
+  padding-top:19%;
+  padding-left:15%;
+}
+
+.imgg2
+{
+  font-family:Alegreya Sans;
+  font-size: 29px;
+  position: absolute;
+      left: 24.5%;
+      padding-top: 1%;
+}
+
+
+.imgt
+{
+  padding-top: 0;
+  padding-right: 33.8%;
+}
+
+.imggt
+{
+  font-family:Alegreya Sans;
+  font-size: 29px;
+  position: absolute;
+  left: 68%;
+  padding-top: 1%;
+}
+
+
+.imgt4
+{
+  padding-top: 0;
+  padding-right: 33.8%;
+}
+
+.imggt4
+{
+  font-family:Alegreya Sans;
+  font-size: 29px;
+  position: absolute;
+  left: 68%;
+  padding-top: 1%;
+}
+
+
+
+
+.obratnuj-zvonok
+{
+  padding-left: 38%;
+  font-family:Alegreya Sans;
+	width: 100%;
+	max-width: 350px;
+}
+
+.form-zvonok
+{
+	width: 100%;
+  font-family:Alegreya Sans;
+  font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.form-zvonok div{
+  font-family:Alegreya Sans;
+
+	padding: 15px 0;
+}
+
+.form-zvonok label,.form-zvonok input{
+  font-family:Alegreya Sans;
+  font-size: 20px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+.form-zvonok label{
+  font-family:Alegreya Sans;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.form-zvonok input{
+	padding: 10px 15px;
+	margin-top: 10px;
+}
+.form-zvonok label span{
+	color: red;
+}
+.form-zvonok .bot-send-mail{
+  font-size: 25px; /* Размер текста */
+  font-family:Alegreya Sans;
+	padding: 14px;
+	background: none;
+	border: none;
+	color: #black;
+  background: #ffa8d1;
+	cursor: pointer;
+  border-radius: 10px;
+  text-align:center; /* Уголки */
+}
+.form-zvonok .bot-send-mail:hover{
+  background: #ff8dc3;
+}
+
+.head2
+{
+  font-family:Alegreya Sans;
+   margin-top: 20%;
+   margin-left: 37%;
+   margin-bottom: 2%;
+
+   font-size: 46px;
+}
+.head3
+{
+  font-family:Alegreya Sans;
+   padding-top: 4%;
+   margin-left: 43%;
+   margin-bottom: 3%;
+   color: black;
+   font-size: 46px;
+}
+
+.masters{
+width: 100%;
+height: 880px;
+background: url('фф.jpg') no-repeat;
+-webkit-background-size: cover;
+box-sizing: border-box;
+margin-top: 8%;
+ box-shadow: 0 0 15px 0 white inset;
+}
+
+.masters1{
+width: 27%;
+height: 51%;
+background: url('разм.png');
+box-sizing: border-box;
+margin-left: 6%;
+
+float: left; /*Задаем обтекание*/
+     line-height: 120px;/*Высота строки +  верт. центрирования текста*/
+     font-size: 40px;
+     color: white;
+     text-align: center;
+}
+
+.masters2{
+  width: 27%;
+  height: 51%;
+  background: url('разм.png');
+box-sizing: border-box;
+margin-left: 4%;
+
+
+float: left; /*Задаем обтекание*/
+     line-height: 120px;/*Высота строки +  верт. центрирования текста*/
+     font-size: 40px;
+     color: white;
+     text-align: center;
+}
+
+.masters3{
+  width: 27%;
+  height: 51%;
+  background: url('разм.png');
+box-sizing: border-box;
+margin-left: 4%;
+
+
+
+float: left; /*Задаем обтекание*/
+     line-height: 120px;/*Высота строки +  верт. центрирования текста*/
+     font-size: 40px;
+     color: white;
+     text-align: center;
+}
+
+.circle-image{
+  margin-top: 10.5%;
+	  display: inline-block;
+	  border-radius: 2%;
+	  overflow: hidden;
+	  width: 60%;
+	  height: 79%;
+}
+
+	.circle-image img{
+	  width:100%;
+	  height:100%;
+	  object-fit: cover;
+	}
+
+.m1{
+  font-family:Alegreya Sans;
+  font-size: 40px;
+  color: black;
+  background-color: #ffa8d1;
+
+/*  -webkit-text-stroke-width: 0.3px;
+   -webkit-text-stroke-color: black;
+*/
+}
+
+
+.m2{
+  font-family:Alegreya Sans;
+  font-size: 40px;
+  color: black;
+  background-color: #ffa8d1;
+
+  /*-webkit-filter: blur(5px);
+  */
+}
+
+
+
+.m3{
+  font-family:Alegreya Sans;
+  font-size: 40px;
+  color: black;
+  background-color: #ffa8d1;
+
+}
+
+/*.zad2
+{
+  font-size: 30px;
+  padding: 5px 20px;
+  background: #ffa8d1;
+  border-radius: 10px;
+  width: 320px;
+  height: 60px;
+  border: 0;
+
+  margin-left:40%;
+  margin-top:13%;
+  font-family:Alegreya Sans;
+}
+
+.zad2:hover
+{
+    background: #ff8dc3;
+}
+*/
+
+
+
+.slider-content * {
+    box-sizing: border-box;
+    font-family: Verdana, sans-serif;
+}
+.slider-content {
+    position: relative;
+    background: #fff;
+    margin: 5% 0%;
+}
+.slider-content .slider-container {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+}
+.slider-content .slide-content {
+    position: relative;
+    width: 100%;
+    height: 135%;
+}
+.slider-content .header {
+    position: absolute;
+    left: 40px;
+    z-index: 999;
+}
+.slider-content .header .logo {
+    font-size: 26px;
+    color: white;
+}
+.slider-content .header .logo span {
+    font-weight: bold;
+}
+.slider-content .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.slider-content .slide:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.slider-content .slide.active {
+    opacity: 1;
+}
+.slider-content .slide .clip-svg {
+    clip-path: circle(25px at 90%);
+    width: 100%;
+    height: 100%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+}
+.slider-content .slide.active .clip-svg {
+    clip-path: circle(130% at 90%);
+}
+.slider-content img {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slider-content .title-wrapper {
+    position: absolute;
+    color: white;
+    left: 80px;
+    width: calc(100% - 160px);
+}
+.slider-content .title-wrapper .title-1 {
+    font-size: 30px;
+    margin: 0;
+    font-weight: 900;
+}
+.slider-content .title-wrapper .title-2 {
+    font-size: 22px;
+}
+.slider-content .control-nav {
+    position: absolute;
+    left: 30px;
+    top: 20%;
+    z-index: 999;
+}
+.slider-content .control-nav ul {
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+.slider-content .control-nav li {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 10px 0;
+    background: white;
+    opacity: 0.5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+.slider-content .control-nav li.active {
+    opacity: 1;
+}
+.slider-content .next-button {
+    position: absolute;
+    right: 1%;
+    height: 5%;
+    width: 5%;
+    top: 48%;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 50%;
+}
+.slider-content .next-button svg {
+    height: 100%;
+    width: 100%;
+    transform: rotate(270deg);
+    fill: #FFF;
+}
+.slider-content .footer-wrapper {
+    position: absolute;
+    color: white;
+    right: 40px;
+    z-index: 10;
+}
+.slider-content .footer-wrapper ul {
+    list-style: none;
+    padding: 12px 0 0;
+}
+.slider-content .footer-wrapper ul:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.slider-content .footer-wrapper li {
+    position: relative;
+    float: left;
+}
+.slider-content .footer-wrapper a {
+    color: #FFF;
+    text-decoration:none;
+    transition-duration: 0.3s;
+    display:inline-block;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.slider-content .footer-wrapper a:hover {
+    color: #FFF;
+    text-decoration:none;
+}
+.slider-content .footer-wrapper a:after {
+    display: block;
+    content: "";
+    height: 2px;
+    width: 0%;
+    background-color: #FFF;
+    transition: width 0.2s ease-in-out;
+}
+.slider-content .footer-wrapper a:hover:after,
+.slider-content .footer-wrapper a:focus:after {
+    width: 100%;
+}
+
+
+
+.ex
+{
+  font-family:Alegreya Sans;
+   padding-top: 6%;
+   margin-left: 42%;
+   color: black;
+   font-size: 46px;
+}
+
+
+.rectangle2
+{
+  width: 100%;
+  height: 10%;
+  background: #ffa8d1;
+  margin:0;
+  padding:0;
+}
+
+.inst
+{
+  width: 2%;
+  height: 4%;
+  margin: 1% 0;
+  padding-left: 90%;
+}
+
+
+.twit
+{
+  width: 2%;
+  height: 4%;
+  margin: 1% 0;
+  padding-left: 1%;
+}
+
+
+.vk
+{
+  width: 2%;
+  height: 4%;
+  margin: 1% 0;
+  padding-left: 1%;
+}
+
+
+#zatemnenie
+{
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        overflow: hidden;
+        z-index: 500;
+
+}
+
+
+#okno
+{
+        width: 300px;
+        height: 140px;
+        text-align: center;
+        padding: 15px;
+        border: 3px solid #ffa8d1;
+        border-radius: 10px;
+        color: #0000cc;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        background: #fff;
+
+        font-family:Alegreya Sans;
+        font-size: 20px;
+        color: black;
+}
+
+#zatemnenie:target {display: block;}
+      .close
+      {
+        display: inline-block;
+        border: 1px solid #ffa8d1;
+        color: #0000cc;
+        padding: 0 12px;
+        margin: 10px;
+        text-decoration: none;
+        background: #f2f2f2;
+        font-size: 14pt;
+        cursor:pointer;
+      }
+      .close:hover {background: #e6e6ff;}
+
+
+      .head4
+      {
+        font-family:Alegreya Sans;
+         padding-top: 4%;
+         margin-left: 38%;
+         margin-bottom: 0%;
+         color: black;
+         font-size: 46px;
+      }
+
+   </style>
+  </head>
+  <body>
+
+
+<div class="rectangle">
+  <img src="лого.ico" class="logo"></img>
+  <img src="телеф.ico" class="phone"></img>
+
+  <div class="text">+375(33)475-44-25</div>
+
+  <div>
+    <a href="#top" class="cilk">Записаться</a>
+  </div>
+
+  <img src="гео.ico" class="geo"></img>
+  <div class="text2">г. Минск, пр-т Независимости, 20
+    <p>г. Минск, ул. Одоевского, 117а</div>
+</div>
+
+
+<div>
+  <img src="главн.png" class="main">
+  <div class="textm">
+    Ваш лучший салон
+    <p>маникюра в методике</p>
+    <p><b>«ЗАКРЫТЫМИ ГЛАЗАМИ»</b></p>
+  </div>
+  <button type="button" name="button" class="zad1"><a href="#top" style="text-decoration:none; color:black;">
+Записаться</a></button>
+</div>
+
+
+
+
+<div class="block">
+  <p class="head">Почему мы?</p>
+  <div class="img1">
+    <img src="кач.png" width="120" height="120" align="left"></img>
+    <p class="imgg1">Гарантия качества</p>
+  </div>
+
+  <div class="imgt">
+    <img src="стер.png" width="120" height="120" align="right"></img>
+    <p class="imggt">Стерилизация инструментов</p>
+  </div>
+
+  <div class="img2">
+    <img src="комф.png" width="120" height="120" align="left"></img>
+    <p class="imgg2">Комфорт</p>
+  </div>
+
+  <div class="imgt4">
+    <img src="диз.png" width="120" height="120" align="right"></img>
+    <p class="imggt4">Дизайны любой сложности</p>
+  </div>
+
+
+  </div>
+
+
+
+  <p class="head2">Забронировать место</p>
+
+  <form class="obratnuj-zvonok" autocomplete="off" method='post'>
+
+  <div class="form-zvonok">
+    <a name="top"></a>
+    <div>
+      <label>ФИО<span>*</span></label>
+      <input type='text' id='username' required></div>
+    <div>
+      <label>Номер телефона (с кодом) <span>*</span></label>
+      <input type='text' id='mail' required></div>
+    <div>
+      <label>Имя мастера</label>
+      <input type='text' id='namem'>
+    </div>
+    <div>
+      <label>Сообщение</label>
+      <input type='text' id='message'>
+    </div>
+<a href="#zatemnenie" style="text-decoration:none;"><input class="bot-send-mail" id="inn" type='text' value='Отправить' onclick="MakeZakaz();"></a>
+  </div>
+
+  <div id="zatemnenie">
+      <div id="okno">
+           <div id="data"></div>
+        <a href="#top" class="close">Закрыть окно</a>
+      </div>
+  </div>
+
+  </form>
+
+
+<div class="masters">
+  <p class="head3">Наши мастера</p>
+  <div class="masters1">
+    <span class="circle-image">
+	 <img src="1.jpg">
+	</span>
+  <p class="m1">Ирина</p>
+
+  </div>
+
+  <div class="masters2">
+    <span class="circle-image">
+   <img src="2.jpg">
+ </span>
+    <p class="m2">Анастасия</p>
+  </div>
+
+  <div class="masters3">
+    <span class="circle-image">
+   <img src="3.jpg">
+  </span>
+   <p class="m1">Мария</p>
+  </div>
+</div>
+
+<p class="ex">Примеры работ</p>
+
+<div class="slider-content">
+    <div class="header">
+    <div class="logo"></div>
+    </div>
+    <div class="slider-wrapper">
+        <div class="slider-container">
+            <div class="control-nav">
+                <ul></ul>
+            </div>
+            <div class="next-button">
+                <svg class="arrow-right-5" viewBox="0 0 154 109">
+                    <symbol id="Arrow" viewBox="-73.9 -55.3 135.9 85.4">
+                        <g>
+                            <polygon points="-73.9,29.1 -6,-9.2 61.9,30.1 61.9,14.2 -6,-25.1 -73.9,14.2 "/>
+                        </g>
+                        <g>
+                            <polygon points="-73.9,-1 -6,-39.3 61.9,0 61.9,-16 -6,-55.3 -73.9,-16 "/>
+                        </g>
+                    </symbol>
+                    <use xlink:href="#Arrow" width="135.9" height="85.4" id="XMLID_1_" x="-73.9" y="-55.3" transform="matrix(1.007 0 0 -1.007 83.0005 42)" />
+                </svg>
+            </div>
+
+            <div class="slide active">
+                <div class="slide-content ">
+                    <div class="clip-svg">
+                        <img class="" src="м3.jpg" alt="" />
+                        <div class="title-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- еще слайды -->
+            <div class="slide">
+                <div class="slide-content ">
+                    <div class="clip-svg">
+                        <img class="" src="м2.jpg" alt="" />
+                        <div class="title-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- еще слайды -->
+            <div class="slide">
+                <div class="slide-content ">
+                    <div class="clip-svg">
+                        <img class="" src="м1.jpg" alt="" />
+                        <div class="title-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- еще слайды -->
+            <div class="slide">
+                <div class="slide-content ">
+                    <div class="clip-svg">
+                        <img class="" src="м4.jpg" alt="" />
+                        <div class="title-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- еще слайды -->
+              <div class="slide">
+                  <div class="slide-content ">
+                      <div class="clip-svg">
+                          <img class="" src="м5.jpg" alt="" />
+                          <div class="title-wrapper">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+
+        </div>
+    </div>
+  </div>
+
+
+  <p class="head4">Наше местоположение</p>
+
+
+    <div class="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18783.014999464413!2d27.646180279101557!3d53.9516947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfc6ce39a047%3A0x27603bebefdae365!2z0J3QvtCy0YvQuSDQodGC0LjQu9GMIEBuc3R5bGUuYnk!5e0!3m2!1sru!2sby!4v1653124167009!5m2!1sru!2sby" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+<div class="rectangle2">
+  <a href="https://www.instagram.com/nail_minsk_molodezhnaya/?hl=ru"><img src="inst.png" class="inst" width="70" height="70"></img></a>
+  <a href="https://twitter.com/Wz1Zge/status/1529795403863965696"><img src="twit.png" class="twit" width="70" height="70"></img></a>
+  <a href="https://vk.com/club150948621"><img src="vk.png" class="vk" width="70" height="70"></img></a>
+</div>
+
+  </body>
+</html>
